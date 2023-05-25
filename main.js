@@ -3,7 +3,7 @@ const header = document.createElement("header");
 header.innerHTML = `<img class="logo_img" src="./assets/logo.png" alt="Logo" />
 <nav class="menu">
   <ul class="menu_options">
-    <li><a class="menu_option" href="#">Quiénes somos</a></li>
+    <li><a class="menu_option" href="#">Nosotras</a></li>
 //  <li><a class="menu_option" href="#">Tienda</a></li>
 //  <li><a class="menu_option" href="#">Galería</a></li>
 //  <li><a class="menu_option" href="#">Contacto</a></li>
@@ -43,7 +43,8 @@ document.body.appendChild(asideArticle);
 const btn2 = document.querySelector(".filter_reset");
 btn2.addEventListener("click", resetFilters);
 function resetFilters() {
-  document.getElementsByClassName("filter_options").reset();
+document.getElementsByClassName("filter_options").reset();
+productsArticle.innerHTML 
 }
 
 // Array de productos.
@@ -109,7 +110,7 @@ const products = [
     image: "./assets/clip pelo.png",
   },
 ];
-
+const clonedProducts = products;
 // Divs para cada artículo de la tienda.
 const productsArticle = document.createElement("article");
 productsArticle.className = "container_products";
@@ -121,7 +122,7 @@ for (let i = 0; i < products.length; i++) {
 <p>${products[i].price}€</p>
 <p>${products[i].seller}</p>
 </div>`;
-document.body.appendChild(productsArticle);
+  document.body.appendChild(productsArticle);
 }
 
 // FILTROS.
@@ -130,17 +131,15 @@ document.body.appendChild(productsArticle);
 //Event listeners.
 let inputValue = "";
 let selectValue = "";
-const filteredPrices = [];
 
 const onButtonClicked = () => {
-  const filteredProductsBySeller = products.filter((product) => {
-    
-    return product.seller === selectValue;
-  })
+  // const filteredProductsBySeller = products.filter((product) => {
+  //   return product.seller = selectValue;
+  // });
   const filteredProductsByPrice = products.filter((product) => {
-    
     return product.price <= inputValue;
-  })
+  });
+  // const filterConcat = filteredProductsBySeller.concat(filteredProductsByPrice);
   productsArticle.innerHTML = "";
   console.log(filteredProductsByPrice);
   for (let i = 0; i < filteredProductsByPrice.length; i++) {
@@ -150,17 +149,16 @@ const onButtonClicked = () => {
   <p>${filteredProductsByPrice[i].price}€</p>
   <p>${filteredProductsByPrice[i].seller}</p>
   </div>`;
-  document.body.appendChild(productsArticle);
+    document.body.appendChild(productsArticle);
   }
 };
-
 const onInputChanged = (event) => {
   inputValue = event.target.value;
 };
 
-const onSelectChanged = (event) => {
-  selectValue = event.target.value
-}
+// const onSelectChanged = (event) => {
+//   selectValue = event.target.value;
+// };
 
 const buttonElement = document.querySelector("#submit");
 buttonElement.addEventListener("click", onButtonClicked);
@@ -168,5 +166,5 @@ buttonElement.addEventListener("click", onButtonClicked);
 const inputElement = document.querySelector('input[type="number"]');
 inputElement.addEventListener("input", onInputChanged);
 
-const selectElement = document.querySelector("#seller");
-selectElement.addEventListener("select", onSelectChanged);
+// const selectElement = document.querySelector("#seller");
+// selectElement.addEventListener("select", onSelectChanged);
