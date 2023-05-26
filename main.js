@@ -26,13 +26,7 @@ asideArticle.innerHTML = `<form id="filter-options">
 </select>
 <div class="price_filter">
   <p>Precio</p>
-  <input
-    class="price_input"
-    placeholder="Precio máximo"
-    type="number"
-    name="price"
-    id="price"
-  />
+  <input class="price_input" placeholder="Precio máximo" type="number" name="price" id="price"/>
   <button id="submit" class="submit" type="button">Buscar</button>
 </div>
 <button class="filter_reset" type="reset">Limpiar filtros</button>

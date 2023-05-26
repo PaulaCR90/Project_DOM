@@ -30,6 +30,11 @@
 
   .menu {
     width: 65%;
+    margin-right: 10%;
+  }
+
+  .menu_options {
+    margin-right: 20%;
   }
 
   .filter_options {
@@ -38,17 +43,18 @@
     font-size: 90%;
     border-bottom: 1px solid var(---orange);
     margin-bottom: 5%;
+    margin-right: 10%;
     padding-bottom: 5%;
+    width: 100%;
   }
 
-  .filter_options label {
+  .seller {
     margin-left: 3%;
     margin-right: 6%;
   }
 
-  .filter_options .filter_reset {
-    margin: 0;
-    width: fit-content;
+  .filter_reset {
+    margin-left: 40%;
   }
 
   .price_filter {
@@ -61,16 +67,11 @@
     margin-bottom: 5%;
   }
 
-  .filter_options {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .filter_options h3 {
-    width: fit-content;
     width: 100%;
   }
+
+
 }
 
 @media screen and (min-width: 375px) and (max-width: 768px) and (orientation:portrait) {
@@ -91,7 +92,7 @@
 
 @media screen and (min-width: 768px) and (orientation:landscape) {
   header {
-    font-size: 100%;
+    font-size: 150%;
     height: 20vh;
   }
 
@@ -115,6 +116,20 @@
     padding-left: 4%;
     padding-right: 4%;
   }
+
+  .filter_reset {
+    margin-left: 20%;
+    margin-top: 10%;
+  }
+
+  .container_products {
+    float: right;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 70%;
+    grid-gap: 4%;
+    padding-right: 4%;
+  }
 }
 
 body {
@@ -135,8 +150,7 @@ header {
 
 .menu_options {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-around;
+  justify-content:space-around;
   list-style-type: none;
   font-family: "BrittanySignature";
 }
@@ -169,13 +183,7 @@ header li:hover {
     font-size: 65%;
     background: linear-gradient(0deg, var(---orange) 0%, var(---pink) 100%);
     cursor: pointer;
-    width:fit-content;
     border-radius: 7% ;
-}
-
-.filter_reset {
-  margin-left: 20%;
-  margin-top: 10%;
 }
 
 .price_input {
@@ -190,7 +198,6 @@ header li:hover {
 
 p {
   margin: 0;
-  margin-top: 5%;
 }
 
 select:hover, input:hover {
@@ -199,18 +206,12 @@ select:hover, input:hover {
 }
 
 .product_img {
-    width: 50%;
+    width: 80%;
 }
 
 .container_products {
     font-family: "IndieFlower";
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    float: right;
-    width: 70%;
     padding-top: 2%;
-    padding-right: 4%;
-    grid-gap: 4%;
 }
 
 .div_products {
