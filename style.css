@@ -12,7 +12,7 @@
 :root {
   ---pink: rgba(162, 81, 175, 255);
   ---orange: rgba(250, 131, 97, 255);
-  ---orange-shadow: rgba(250, 131, 97, 0.3)
+  ---orange-shadow: rgba(250, 131, 97, 0.3);
   ---black: rgb(0, 0, 0);
   ---purple: rgb(156, 83, 182, 0.2);
   ---purple-shadow: rgba(162, 81, 175, 0.4);
@@ -74,22 +74,6 @@
   }
 }
 
-/* @media screen and (min-width: 375px) and (max-width: 768px) and (orientation:portrait) {
-  header {
-    font-size: 90%;
-    height: 20vh;
-  }
-
-  .logo_img {
-    width: 20%;
-  }
-
-  .menu {
-    width: 80%;
-    margin-right: 5%;
-  }
-} */
-
 @media screen and (min-width: 450px) and (orientation:landscape) {
   header {
     font-size: 150%;
@@ -105,7 +89,7 @@
   }
 
   .filter_options {
-    font-size: 150%;
+    font-size: 100%;
     float: left;
     width: 20%;
     margin-left: 2%;
@@ -118,8 +102,22 @@
   }
 
   .filter_reset {
-    margin-left: 20%;
-    margin-top: 10%;
+    margin-top: 5%;
+  }
+
+  .price_filter {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .seller_filter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .seller {
+    margin-top: 5%;
   }
 
   .container_products {
@@ -129,6 +127,8 @@
     width: 70%;
     grid-gap: 4%;
     padding-right: 4%;
+    padding-left: 1%;
+    border-left: 1px solid var(---orange);
   }
 
   .div_products {
@@ -142,7 +142,6 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  width: 100vw;
 }
 
 header {
@@ -218,6 +217,7 @@ select:hover, input:hover {
 .container_products {
     font-family: "IndieFlower";
     padding-top: 2%;
+    height: 100%;
 }
 
 .div_products {
