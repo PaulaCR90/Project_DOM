@@ -18,7 +18,7 @@
   ---purple-shadow: rgba(162, 81, 175, 0.4);
 }
 
-@media screen and (max-width: 375px) and (orientation:portrait) {
+@media screen and (max-width: 425px) and (orientation:portrait) {
   header {
     font-size: 80%;
     height: 15vh;
@@ -43,9 +43,8 @@
     font-size: 90%;
     border-bottom: 1px solid var(---orange);
     margin-bottom: 5%;
+    padding-bottom: 5%;    
     margin-right: 10%;
-    padding-bottom: 5%;
-    width: 100%;
   }
 
   .seller {
@@ -71,10 +70,20 @@
     width: 100%;
   }
 
+  .container_products {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin-right: 10%;
+  }
 
+  .div_products {
+    width: 70%;
+    margin-bottom: 5%;
+  }
 }
 
-@media screen and (min-width: 375px) and (max-width: 768px) and (orientation:portrait) {
+/* @media screen and (min-width: 375px) and (max-width: 768px) and (orientation:portrait) {
   header {
     font-size: 90%;
     height: 20vh;
@@ -88,9 +97,9 @@
     width: 80%;
     margin-right: 5%;
   }
-}
+} */
 
-@media screen and (min-width: 768px) and (orientation:landscape) {
+@media screen and (min-width: 425px) and (orientation:landscape) {
   header {
     font-size: 150%;
     height: 20vh;
@@ -129,6 +138,12 @@
     width: 70%;
     grid-gap: 4%;
     padding-right: 4%;
+  }
+
+  .div_products {
+    width: 90%;
+    height: 100%;
+    margin-right: 2%;
   }
 }
 
@@ -206,7 +221,7 @@ select:hover, input:hover {
 }
 
 .product_img {
-    width: 80%;
+    width: 70%;
 }
 
 .container_products {
@@ -215,12 +230,9 @@ select:hover, input:hover {
 }
 
 .div_products {
-    width: 90%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center; 
-    margin-right: 2%;
     border-radius: 5%;
     cursor: pointer;
     padding: 2%;
