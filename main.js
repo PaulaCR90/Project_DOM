@@ -36,8 +36,7 @@ asideArticle.innerHTML = `<form id="filter-options">
 document.body.appendChild(asideArticle);
 
 // Función reset del botón de limpiar filtros.
-const btn2 = document.querySelector(".filter_reset");
-btn2.addEventListener("click", resetFilters);
+
 
 // Array de productos.
 const products = [
@@ -103,6 +102,8 @@ const products = [
   },
 ];
 
+const productsCopy = products;
+
 // Divs para cada artículo de la tienda.
 const productsArticle = document.createElement("article");
 productsArticle.className = "container_products";
@@ -128,15 +129,34 @@ function resetFilters() {
 
 // FILTROS.
 // SELLER.
+const onOptionSelected = (event) => {
+  let selectOpt = selectElement.selectedIndex;
+  let opt = selectElement.options[selectOpt].innerHTML;
+  console.log(opt);
 
+  productsArticle.innerHTML = "";
+
+  const filteredProductsBySeller = productsCopy.filter((product) => {
+    const filterSelectedOpt = product.seller === opt;
+    return filterSelectedOpt;
+  });
+
+  for (let i = 0; i < filteredProductsBySeller.length; i++) {
+    productsArticle.innerHTML += `<div class="div_products">
+   <img class="product_img" src="${filteredProductsBySeller[i].image}" alt="${filteredProductsBySeller[i].name}"/>
+   <h3>${filteredProductsBySeller[i].name}</h3>
+   <p>${filteredProductsBySeller[i].price}€</p>
+   <p>${filteredProductsBySeller[i].seller}</p>
+   </div>`;
+    document.body.appendChild(productsArticle);
+  }
+};
 // PRECIO.
 
-//Event listeners.
 let inputValue = "";
-let selectValue = "";
 
 const onButtonClicked = () => {
-  const filteredProductsByPrice = products.filter((product) => {
+  const filteredProductsByPrice = productsCopy.filter((product) => {
     return product.price <= inputValue;
   });
 
@@ -153,17 +173,11 @@ const onButtonClicked = () => {
   }
 };
 
-const onOptionSelected = (event) => {
-  selectValue = event.target.value;
-  const filteredProductsBySeller = products.filter((product) => {
-    return product.seller <= selectValue;
-  });
-};
-
 const onInputChanged = (event) => {
   inputValue = event.target.value;
 };
 
+//Event listeners.
 const buttonElement = document.querySelector("#submit");
 buttonElement.addEventListener("click", onButtonClicked);
 
@@ -171,4 +185,7 @@ const inputElement = document.querySelector('input[type="number"]');
 inputElement.addEventListener("input", onInputChanged);
 
 const selectElement = document.querySelector("#seller");
-selectElement.addEventListener("select", onOptionSelected);
+selectElement.addEventListener("change", onOptionSelected);
+
+const btn2 = document.querySelector(".filter_reset");
+btn2.addEventListener("click", resetFilters);
