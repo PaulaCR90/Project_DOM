@@ -37,7 +37,6 @@ document.body.appendChild(asideArticle);
 
 // Función reset del botón de limpiar filtros.
 
-
 // Array de productos.
 const products = [
   {
@@ -129,55 +128,54 @@ function resetFilters() {
 
 // FILTROS.
 // SELLER.
-const onOptionSelected = (event) => {
-  let selectOpt = selectElement.selectedIndex;
-  let opt = selectElement.options[selectOpt].innerHTML;
-  console.log(opt);
+ function onOptionSelected() {
+   let selectOpt = selectElement.selectedIndex;
+   let opt = selectElement.options[selectOpt].innerHTML;
 
-  productsArticle.innerHTML = "";
+   productsArticle.innerHTML = "";
 
-  const filteredProductsBySeller = productsCopy.filter((product) => {
-    const filterSelectedOpt = product.seller === opt;
-    return filterSelectedOpt;
-  });
+   const filteredProductsBySeller = productsCopy.filter((product) => {
+     const filterSelectedOpt = product.seller === opt;
+     return filterSelectedOpt;
+   });
 
-  for (let i = 0; i < filteredProductsBySeller.length; i++) {
-    productsArticle.innerHTML += `<div class="div_products">
-   <img class="product_img" src="${filteredProductsBySeller[i].image}" alt="${filteredProductsBySeller[i].name}"/>
-   <h3>${filteredProductsBySeller[i].name}</h3>
-   <p>${filteredProductsBySeller[i].price}€</p>
-   <p>${filteredProductsBySeller[i].seller}</p>
-   </div>`;
-    document.body.appendChild(productsArticle);
-  }
-};
+   for (let i = 0; i < filteredProductsBySeller.length; i++) {
+     productsArticle.innerHTML += `<div class="div_products">
+     <img class="product_img" src="${filteredProductsBySeller[i].image}" alt="${filteredProductsBySeller[i].name}"/>
+     <h3>${filteredProductsBySeller[i].name}</h3>
+     <p>${filteredProductsBySeller[i].price}€</p>
+     <p>${filteredProductsBySeller[i].seller}</p>
+     </div>`;
+     document.body.appendChild(productsArticle);
+   }
+ }
+
 // PRECIO.
-
 let inputValue = "";
 
-const onButtonClicked = () => {
+function onButtonClicked() {
   const filteredProductsByPrice = productsCopy.filter((product) => {
     return product.price <= inputValue;
   });
 
   productsArticle.innerHTML = "";
-  console.log(filteredProductsByPrice);
+  
   for (let i = 0; i < filteredProductsByPrice.length; i++) {
     productsArticle.innerHTML += `<div class="div_products">
-  <img class="product_img" src="${filteredProductsByPrice[i].image}" alt="${filteredProductsByPrice[i].name}"/>
-  <h3>${filteredProductsByPrice[i].name}</h3>
-  <p>${filteredProductsByPrice[i].price}€</p>
-  <p>${filteredProductsByPrice[i].seller}</p>
-  </div>`;
+   <img class="product_img" src="${filteredProductsByPrice[i].image}" alt="${filteredProductsByPrice[i].name}"/>
+   <h3>${filteredProductsByPrice[i].name}</h3>
+   <p>${filteredProductsByPrice[i].price}€</p>
+   <p>${filteredProductsByPrice[i].seller}</p>
+   </div>`;
     document.body.appendChild(productsArticle);
   }
-};
+  
+}
 
 const onInputChanged = (event) => {
   inputValue = event.target.value;
 };
 
-//Event listeners.
 const buttonElement = document.querySelector("#submit");
 buttonElement.addEventListener("click", onButtonClicked);
 
