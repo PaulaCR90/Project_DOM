@@ -128,10 +128,11 @@ function resetFilters() {
 
 // FILTROS.
 // SELLER.
- function onOptionSelected() {
+
+
+ const onOptionSelected = (event) => {
    let selectOpt = selectElement.selectedIndex;
    let opt = selectElement.options[selectOpt].innerHTML;
-
    productsArticle.innerHTML = "";
 
    const filteredProductsBySeller = productsCopy.filter((product) => {
@@ -157,19 +158,25 @@ function onButtonClicked() {
   const filteredProductsByPrice = productsCopy.filter((product) => {
     return product.price <= inputValue;
   });
+  let selectOpt = selectElement.selectedIndex;
+   let opt = selectElement.options[selectOpt].innerHTML;
+
+   const filteredPriceAndSeller = filteredProductsByPrice.filter((product) => {
+    const filterMerged = product.seller === opt;
+    return filterMerged;
+  });
 
   productsArticle.innerHTML = "";
   
-  for (let i = 0; i < filteredProductsByPrice.length; i++) {
+  for (let i = 0; i < filteredPriceAndSeller.length; i++) {
     productsArticle.innerHTML += `<div class="div_products">
-   <img class="product_img" src="${filteredProductsByPrice[i].image}" alt="${filteredProductsByPrice[i].name}"/>
-   <h3>${filteredProductsByPrice[i].name}</h3>
-   <p>${filteredProductsByPrice[i].price}€</p>
-   <p>${filteredProductsByPrice[i].seller}</p>
+   <img class="product_img" src="${filteredPriceAndSeller[i].image}" alt="${filteredPriceAndSeller[i].name}"/>
+   <h3>${filteredPriceAndSeller[i].name}</h3>
+   <p>${filteredPriceAndSeller[i].price}€</p>
+   <p>${filteredPriceAndSeller[i].seller}</p>
    </div>`;
     document.body.appendChild(productsArticle);
   }
-  
 }
 
 const onInputChanged = (event) => {
