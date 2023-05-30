@@ -19,7 +19,7 @@ asideArticle.innerHTML = `<form id="filter-options">
 <div class="seller_filter">
   <label class="seller" for="seller">Vendedores</label>
   <select name="seller" id="seller">
-    <option disabled selected>Filtrar por tienda</option>
+    <option disabled selected value="">Filtrar por tienda</option>
     <option value="0">Maui</option>
     <option value="1">Elisa</option>
     <option value="2">Phoebo</option>
@@ -129,53 +129,69 @@ function resetFilters() {
 // FILTROS.
 // SELLER.
 
+const onOptionSelected = (event) => {
+  let selectOpt = selectElement.selectedIndex;
+  let opt = selectElement.options[selectOpt].innerHTML;
+  productsArticle.innerHTML = "";
 
- const onOptionSelected = (event) => {
-   let selectOpt = selectElement.selectedIndex;
-   let opt = selectElement.options[selectOpt].innerHTML;
-   productsArticle.innerHTML = "";
+  const filteredProductsBySeller = productsCopy.filter((product) => {
+    const filterSelectedOpt = product.seller === opt;
+    return filterSelectedOpt;
+  });
 
-   const filteredProductsBySeller = productsCopy.filter((product) => {
-     const filterSelectedOpt = product.seller === opt;
-     return filterSelectedOpt;
-   });
-
-   for (let i = 0; i < filteredProductsBySeller.length; i++) {
-     productsArticle.innerHTML += `<div class="div_products">
+  for (let i = 0; i < filteredProductsBySeller.length; i++) {
+    productsArticle.innerHTML += `<div class="div_products">
      <img class="product_img" src="${filteredProductsBySeller[i].image}" alt="${filteredProductsBySeller[i].name}"/>
      <h3>${filteredProductsBySeller[i].name}</h3>
      <p>${filteredProductsBySeller[i].price}€</p>
      <p>${filteredProductsBySeller[i].seller}</p>
      </div>`;
-     document.body.appendChild(productsArticle);
-   }
- }
+    document.body.appendChild(productsArticle);
+  }
+};
 
 // PRECIO.
 let inputValue = "";
 
 function onButtonClicked() {
-  const filteredProductsByPrice = productsCopy.filter((product) => {
-    return product.price <= inputValue;
-  });
-  let selectOpt = selectElement.selectedIndex;
-   let opt = selectElement.options[selectOpt].innerHTML;
+  if (selectElement.value !== "") {
+    const filteredProductsByPrice = productsCopy.filter((product) => {
+      return product.price <= inputValue;
+    });
+    let selectOpt = selectElement.selectedIndex;
+    let opt = selectElement.options[selectOpt].innerHTML;
 
-   const filteredPriceAndSeller = filteredProductsByPrice.filter((product) => {
-    const filterMerged = product.seller === opt;
-    return filterMerged;
-  });
+    const filteredPriceAndSeller = filteredProductsByPrice.filter((product) => {
+      const filterMerged = product.seller === opt;
+      return filterMerged;
+    });
 
-  productsArticle.innerHTML = "";
-  
-  for (let i = 0; i < filteredPriceAndSeller.length; i++) {
-    productsArticle.innerHTML += `<div class="div_products">
+    productsArticle.innerHTML = "";
+
+    for (let i = 0; i < filteredPriceAndSeller.length; i++) {
+      productsArticle.innerHTML += `<div class="div_products">
    <img class="product_img" src="${filteredPriceAndSeller[i].image}" alt="${filteredPriceAndSeller[i].name}"/>
    <h3>${filteredPriceAndSeller[i].name}</h3>
    <p>${filteredPriceAndSeller[i].price}€</p>
    <p>${filteredPriceAndSeller[i].seller}</p>
    </div>`;
-    document.body.appendChild(productsArticle);
+      document.body.appendChild(productsArticle);
+    }
+  } else {
+    const filteredProductsByPrice = productsCopy.filter((product) => {
+      return product.price <= inputValue;
+    });
+    productsArticle.innerHTML = "";
+
+    for (let i = 0; i < filteredProductsByPrice.length; i++) {
+      productsArticle.innerHTML += `<div class="div_products">
+   <img class="product_img" src="${filteredProductsByPrice[i].image}" alt="${filteredProductsByPrice[i].name}"/>
+   <h3>${filteredProductsByPrice[i].name}</h3>
+   <p>${filteredProductsByPrice[i].price}€</p>
+   <p>${filteredProductsByPrice[i].seller}</p>
+   </div>`;
+      document.body.appendChild(productsArticle);
+    }
   }
 }
 
